@@ -1,6 +1,6 @@
 async function retrieveNotes() {
   const requestURL =
-    "notes.json";
+    "https://raw.githubusercontent.com/Bluerobin427/curiosity-cabinet/main/notes.json";
   const request = new Request(requestURL);
 
   const response = await fetch(request);
