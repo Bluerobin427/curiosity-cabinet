@@ -1,0 +1,32 @@
+* {
+    padding:0;
+    margin: 0;
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+}
+header {
+    padding: 0 3em;
+    margin: 1em 0;
+}
+nav {
+    
+    background-color: lightgray;
+    padding: 0.5em;
+}
+main {
+    margin: 1em 0;
+    padding: 0.5em;
+}
+section {
+    margin: 0 1em 0.5em 1em;
+    padding: 1.5em 0.5em;
+    border: solid lightgray;
+}
+p {
+    margin: .5em 0;
+}
+h2 {
+    padding: 0 0 0.5em 0;
+}
+.submit {
+    margin: 1.5em 0 0 0;
+}

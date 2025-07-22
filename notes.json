@@ -1,0 +1,16 @@
+[
+  {
+    "id": "000001",
+    "title": "Test Note",
+    "content": "This is a test note. Whee~",
+    "created": "2025-06-12T10:30:00Z",
+    "modified": "2025-06-12T10:30:00Z"
+  },
+  {
+    "id": "000002",
+    "title": "Second Test Note",
+    "content": "This isn't actually a test. Shhhh",
+    "created": "2025-06-12T10:30:00Z",
+    "modified": "2025-06-12T10:30:00Z"
+  }
+]
