@@ -11,7 +11,7 @@ async function retrieveNotes() {
 
 function populateNotes(notes){
     const section = document.querySelector("#notesArea");
-    
+    section.textContent = "";
     for (const note of notes) {
         const nextNote = document.createElement("article");
         const noteH3 = document.createElement("h3");
