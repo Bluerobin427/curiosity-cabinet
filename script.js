@@ -1,55 +1,76 @@
-async function retrieveNotes() {
+function createNoteLibrary(){
+  let noteLibrary = [];
+  localStorage.noteLibrary = JSON.stringify(noteLibrary);
+}
+
+function getNoteLibrary(){
+  let noteLibrary = JSON.parse(localStorage.noteLibrary);
+  return noteLibrary;
+}
+
+function setNoteLibrary(noteLibrary){
+  localStorage.noteLibrary = JSON.stringify(noteLibrary);
+}
+
+/*
+async function retrieveNotes(){
   let notes = [];
   let keys = Object.keys(localStorage);
   for (let key of keys) {
     if (localStorage.getItem(key).id !== 'undefined'){
-      let note = localStorage.getItem(key);
-      let arrayNote = note.split(",");
-      notes.push(arrayNote);
+      let note = JSON.parse(localStorage.getItem(key));
+      notes.push(note);
     }
   }
   console.log(notes);
   populateNotes(notes);
 }
+*/
 
 function saveNote(){
   const name = document.getElementById("NoteName").value;
-  const noteID = `${name}${Date.now()}`;
-  console.log(noteID);
+  const noteID = `note-${Date.now()}`;
   const content = document.getElementById("NoteContent").value;
   const button = document.getElementById("SubmitButton");
 
-  let note = [noteID, name, content];
+  let note = {"noteID":noteID, "name":name, "content":content};
   //const note = name.value;
-  localStorage.setItem(noteID, note);
-  //setTimeout(() => {
-  //  button.textContent = "Note Saved!";
-  //}, 5000);
+
+  let noteLibrary = getNoteLibrary();
+  noteLibrary.push(note);
+  console.log(noteLibrary);
+  setNoteLibrary(noteLibrary);
+
+  button.textContent = "Note Saved!";
+
   console.log("Save Ran");
+  event.preventDefault();
+  
+  setTimeout(() => {
+    form.submit();
+  }, 2000);
 }
 
-function populateNotes(notes){
+function populateNotes(){
     const section = document.querySelector("#notesArea");
     section.textContent = "";
-    const name = 1;
-    const content = 2;
-    for (let note of notes) {
+    //const name = 1;
+    //const content = 2;
+    let noteLibrary = getNoteLibrary();
+    for (let note of noteLibrary) {
         const nextNote = document.createElement("article");
         const noteH3 = document.createElement("h3");
         const noteP = document.createElement("p");
 
-        let noteName = note[name];
-        //console.log(noteName);
-        noteH3.textContent = noteName;
+        noteH3.textContent = note.name;
 
-        let noteContent = note[content];
         //console.log(noteContent);
         //if (noteContent.includes('\n')){
         //  noteContent.replace(/(\r\n|\r|\n)/g, '\r\n');
         //  console.log("Found a newline!");
         //}
         //console.log(noteContent);
-        noteP.textContent = noteContent;
+        noteP.textContent = note.content;
         nextNote.appendChild(noteH3);
         nextNote.appendChild(noteP);
 
@@ -57,7 +78,13 @@ function populateNotes(notes){
     }
 }
 
-const form = document.getElementById("form");
-form.addEventListener("submit", saveNote);
+if(localStorage.noteLibrary == 'undefined'){
+  createNoteLibrary();
+}
 
-retrieveNotes();
+const form = document.getElementById("form");
+document.addEventListener('DOMContentLoaded', function() {
+  form.addEventListener("submit", saveNote);
+});
+
+populateNotes();

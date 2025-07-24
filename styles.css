@@ -7,6 +7,9 @@ header {
     padding: 0 3em;
     margin: 1em 0;
 }
+h1 {
+    font-size: 36;
+}
 nav {
     
     background-color: lightgray;
@@ -27,11 +30,46 @@ article {
     margin: 0.5em 0;
     white-space: pre-wrap;
 }
-p {
-    margin: .5em 0;
+article > h3 {
+    border-bottom: 2px solid white;
 }
 h2 {
     padding: 0 0 0.5em 0;
+}
+p {
+    margin: .5em 0;
+}
+.navContainer {
+    display: flex;
+}
+.navContainer > div:first-of-type{
+    flex: 3;
+}
+.navContainer > div {
+    flex: 1 150px;
+}
+.navFavs {
+    display: flex;
+}
+.navFavs > div {
+    padding: 0 2em;
+}
+.mainContainer {
+    display: flex;
+}
+#addANoteForm {
+    flex: 1;
+}
+#notesArea {
+    flex: 2;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-around;
+    gap: 1em;
+}
+#notesArea > article {
+    flex: 1 auto;
 }
 .submit {
     margin: 1.5em 0 0 0;
