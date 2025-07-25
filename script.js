@@ -84,13 +84,21 @@ function populateNotes(){
         const nextNote = document.createElement("article");
         const noteH3 = document.createElement("h3");
         const noteP = document.createElement("p");
+        const noteButtons = document.createElement("span");
         const noteEditButton = document.createElement("button");
+        const noteDeleteButton = document.createElement("button");
 
         noteH3.textContent = note.name;
+        noteButtons.id = "buttons";
+        noteH3.appendChild(noteButtons);
         noteEditButton.textContent = "✏️";
         noteEditButton.id = note.noteID;
         noteEditButton.className = "editButton";
-        noteH3.appendChild(noteEditButton);
+        noteButtons.appendChild(noteEditButton);
+        noteDeleteButton.textContent = "❌";
+        noteDeleteButton.id = note.noteID;
+        noteDeleteButton.className = "deleteButton";
+        noteButtons.appendChild(noteDeleteButton);
 
         noteP.textContent = note.content;
         nextNote.appendChild(noteH3);
@@ -138,7 +146,22 @@ function editNote(e){
   formMode.id = "edit";
 }
 function deleteNote(e){
-  //nothing here yet.
+  //Grab the note's noteID from the button (it's the button's ID)
+  let deletingNoteID = e.target.id;
+  
+  //Grab the noteLibrary.
+  let noteLibrary = getNoteLibrary();
+  
+  //Find the note
+  const existingNoteIndex = noteLibrary.findIndex((entry) => entry.noteID === deletingNoteID);
+
+  //Confirm the delete, then delete the note and 
+  // save the change to the noteLibrary
+  if (confirm(`Are you sure you want to delete ${noteLibrary[existingNoteIndex].name}?`) == true){
+    noteLibrary.splice(existingNoteIndex, 1);
+    setNoteLibrary(noteLibrary);
+    window.location.reload();
+  } 
 }
 
 //If the noteLibrary doesn't exist, create it.
