@@ -32,6 +32,8 @@ article {
 }
 article > h3 {
     border-bottom: 2px solid white;
+    display: flex;
+    justify-content: space-between;
 }
 h2 {
     padding: 0 0 0.5em 0;
@@ -41,18 +43,11 @@ p {
 }
 .navContainer {
     display: flex;
-}
-.navContainer > div:first-of-type{
-    flex: 3;
-}
-.navContainer > div {
-    flex: 1 150px;
+    justify-content: space-between;
+    padding: 0.5em 2em;
 }
 .navFavs {
     display: flex;
-}
-.navFavs > div {
-    padding: 0 2em;
 }
 .mainContainer {
     display: flex;
